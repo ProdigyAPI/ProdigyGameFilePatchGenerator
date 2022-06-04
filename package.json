@@ -23,5 +23,6 @@
 	"dependencies": {
 		"node-fetch": "3.2.5",
 		"prodigy-api": "^1.2.2"
-	}
+	},
+	"type": "module"
 }

@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,23 +34,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var node_fetch_1 = __importDefault(require("node-fetch"));
-var prodigy_api_1 = require("prodigy-api");
-var promises_1 = require("fs/promises");
-var path_1 = __importDefault(require("path"));
+import fetch from "node-fetch";
+import { getGameStatus } from "prodigy-api";
+import { writeFile } from "fs/promises";
+import path from "path";
 var getGameFile = function (version) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     switch (_a.label) {
-        case 0: return [4 /*yield*/, (0, node_fetch_1.default)("https://code.prodigygame.com/code/".concat(version, "/game.min.js?v=").concat(version))];
+        case 0: return [4 /*yield*/, fetch("https://code.prodigygame.com/code/".concat(version, "/game.min.js?v=").concat(version))];
         case 1: return [2 /*return*/, (_a.sent()).text()];
     }
 }); }); };
 var getGameVersion = function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     switch (_a.label) {
-        case 0: return [4 /*yield*/, (0, prodigy_api_1.getGameStatus)()];
+        case 0: return [4 /*yield*/, getGameStatus()];
         case 1: return [2 /*return*/, (_a.sent()).gameClientVersion];
     }
 }); }); };
@@ -80,10 +75,10 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                     var regex = _a[0], patch = _a[1];
                     return gameFile.replace(regex, patch);
                 }, gameFile);
-                return [4 /*yield*/, (0, promises_1.writeFile)(path_1.default.join(__dirname, "..", "game-files", "game-".concat(version, ".js")), patchedGameFile)];
+                return [4 /*yield*/, writeFile(path.join(path.dirname("."), "game-files", "game-".concat(version, ".js")), patchedGameFile)];
             case 3:
                 _b.sent();
-                return [4 /*yield*/, (0, promises_1.writeFile)(path_1.default.join(__dirname, "..", "game-files", "current.js"), patchedGameFile)];
+                return [4 /*yield*/, writeFile(path.join(path.dirname("."), "game-files", "current.js"), patchedGameFile)];
             case 4:
                 _b.sent();
                 return [2 /*return*/];

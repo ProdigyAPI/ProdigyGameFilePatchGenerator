@@ -25,8 +25,8 @@ const main = async () => {
 
 	const patchedGameFile = patches.reduce((gameFile, [regex, patch]) => gameFile.replace(regex, patch), gameFile);
 
-	await writeFile(path.join(__dirname, "..", "game-files", `game-${version}.js`), patchedGameFile);
-	await writeFile(path.join(__dirname, "..", "game-files", "current.js"), patchedGameFile);
+	await writeFile(path.join(path.dirname("."), "game-files", `game-${version}.js`), patchedGameFile);
+	await writeFile(path.join(path.dirname("."), "game-files", "current.js"), patchedGameFile);
 };
 
 main();
