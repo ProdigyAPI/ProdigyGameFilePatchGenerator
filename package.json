@@ -21,7 +21,7 @@
 		"typescript": "^4.7.3"
 	},
 	"dependencies": {
-		"node-fetch": "3.2.5",
+		"node-fetch": "3.2.9",
 		"prodigy-api": "^1.2.2"
 	},
 	"type": "module"
